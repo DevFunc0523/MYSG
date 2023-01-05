@@ -12,8 +12,8 @@ namespace My.BasicRoot
     {
         public Dictionary<Root, string> get = new Dictionary<Root, string>()
         {
-            { Root.CANVAS, "Ui/Canvas/BasicCanvas" },
-            { Root.SELECT, "Ui/Canvas/Select" }
+            { Root.CANVAS, "Ui/Prefab/BasicCanvas" },
+            { Root.SELECT, "Ui/Prefab/Select" }
         };
 
         public static BasicRoot Get() { return Resources.Load("Script/BasicRoot") as BasicRoot; }
