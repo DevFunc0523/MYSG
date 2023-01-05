@@ -67,8 +67,7 @@
     <Compile Include="Assets\Resources\Script\Public\BasicJson.cs" />
     <Compile Include="Assets\Resources\Script\Public\BasicRoot.cs" />
     <Compile Include="Assets\Resources\Script\Public\DayToTime.cs" />
-    <Compile Include="Assets\Resources\Script\Public\Singleton.cs" />
-    <None Include="Assets\Resources\Json\DayToTime.txt" />
+    <Compile Include="Assets\Resources\Script\Public\GameManager.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/BOSCHI02/Documents/Company_(SCH)/MYSG/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
