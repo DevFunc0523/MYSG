@@ -61,13 +61,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Resources\Script\Indoor\IndoorMap.cs" />
-    <Compile Include="Assets\Resources\Script\Indoor\Map.cs" />
     <Compile Include="Assets\Resources\Script\Public\BasicCanvas.cs" />
     <Compile Include="Assets\Resources\Script\Public\BasicComponent.cs" />
     <Compile Include="Assets\Resources\Script\Public\BasicJson.cs" />
     <Compile Include="Assets\Resources\Script\Public\BasicRoot.cs" />
-    <Compile Include="Assets\Resources\Script\Public\DayToTime.cs" />
     <Compile Include="Assets\Resources\Script\Public\GameManager.cs" />
+    <Compile Include="Assets\Resources\Script\Public\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Resources\Script\Public\UserData.cs" />
+    <None Include="Assets\Resources\readme.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/BOSCHI02/Documents/Company_(SCH)/MYSG/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

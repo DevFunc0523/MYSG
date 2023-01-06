@@ -1,4 +1,6 @@
 {
   "TimeKey": [ "Day", "Week", "Hour" ],
-  "TimeVulume": [ 0, 0, 12 ]
+  "TimeVulume": [ 1, 0, 12 ],
+  "Location": 0,
+  "Money" : 0
 }

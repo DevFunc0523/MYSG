@@ -11,14 +11,23 @@ namespace My.Look.UserData
     {
         public List<string> TimeKey = new List<string>() { "Day", "Week", "Hour" };
         public List<int> TimeVulume = new List<int>() { 0, 0, 0 };
+        public int Location = 0;
+        public int Money = 0;
     }
 }
 
 namespace My.SaveData
 {
+    public enum LocationEnum
+    {
+        居室,
+    }
+
     public class Data
     {
         public Dictionary<string, int> Time = new Dictionary<string, int>();
+        public LocationEnum Location = LocationEnum.居室;
+        public int Money = 0;
     }
 
     public class UserData
@@ -41,6 +50,11 @@ namespace My.SaveData
 
             // time dictionary make
             for (int i =0; i < json.TimeKey.Count; i++) { Result.Time.Add( json.TimeKey[i], json.TimeVulume[i]); }
+            // location enum make
+            Result.Location = (LocationEnum)json.Location;
+            // money make
+            Result.Money = json.Money;
+
             return Result;
         }
 

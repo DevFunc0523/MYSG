@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using My.BasicRoot;
-using My.GameManager;
 
 public class BasicCanvas : MonoBehaviour
 {
@@ -28,7 +27,7 @@ public class BasicCanvas : MonoBehaviour
     private void Start()
     {
         GetObject();
-        setStatistics();
+        SetStatistics();
     }
 
     private void Singleton()
@@ -76,38 +75,45 @@ public class BasicCanvas : MonoBehaviour
         mSelects.GetChild(0).transform.localPosition = new Vector3(0, (i * 50) / 3, 0);
     }
 
-    private void setStatistics(string mode = null)
+    private void SetStatistics(string mode = null)
     {
-        // 초기화 
+        Transform root = GameObject.Find("Statistics").transform.Find("Text");
+ 
         if (mode == null)
         {
-            Transform root = GameObject.Find("Statistics").transform.Find("Text");
-            mStatistics.Add("Day", root.Find("Day").GetComponent<Text>());
-            mStatistics.Add("Hour", root.Find("Hour").GetComponent<Text>());
-
-            // 모든 void 사용 
-            SetUi_Day();
-            SetUi_Time();
-        }
-        else
-        {
-            switch (mode)
+            // find statistics text to mStatistics
+            string obj = "";
+            for (int i =0; i < root.childCount; i++)
             {
-                case "Day": SetUi_Day(); break;
-                case "Time": SetUi_Time(); break;
+                obj = root.GetChild(i).name;
+                mStatistics.Add(obj, root.Find(obj).GetComponent<Text>());
+                mStatistics[obj].text = ToText(obj);
             }
+            return;
         }
 
-        void SetUi_Day()
-        {
-            List<string> week = new List<string>() { "月", "火", "水", "木", "金", "土", "日" };
-            mStatistics["Day"].text = Manager.Data.Get().Time["Day"] + "日 ( " + week[Manager.Data.Get().Time["Week"]] + " )";
-        }
+        if(!mStatistics.ContainsKey(mode) ) { mStatistics.Add(mode, root.Find(mode).GetComponent<Text>()); }
+        mStatistics[mode].text = ToText(mode);
 
-        void SetUi_Time()
+
+        string ToText(string obj)
         {
-            string temp = (Manager.Data.Get().Time["Hour"] < 10 ? "0" : "") + Manager.Data.Get().Time["Hour"] + ":00";
-            mStatistics["Hour"].text = temp;
+            string result = "";
+            switch(obj)
+            {
+                case "Location": result = Manager.Data.Get().Location.ToString(); break;
+                case "Money": result = Manager.Data.Get().Money.ToString() + "円"; break;
+                case "Hour": result = (Manager.Data.Get().Time["Hour"] < 10 ? "0" : "") + Manager.Data.Get().Time["Hour"] + ":00"; break;
+                case "Health": result = "體力 40/60"; break; // dont
+                case "Stamina": result = "射精 3/3"; break; // dont
+                case "Day":
+                    List<string> week = new List<string>() { "月", "火", "水", "木", "金", "土", "日" };
+                    result = Manager.Data.Get().Time["Day"] + "日 ( " + week[Manager.Data.Get().Time["Week"]] + " )";
+                    break;
+            }
+            return result;
+
+            //여기다가 글자로 바꿔주는거 만들기 
         }
     }
 }

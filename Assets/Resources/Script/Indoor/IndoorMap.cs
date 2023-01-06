@@ -8,8 +8,14 @@ using UnityEngine.SceneManagement;
 
 using My.Component;
 
-public class Map : BasicComponent
+public class IndoorMap : BasicComponent
 {
+    protected override void Awake()
+    {
+        base.Awake();
+        AwakeBasicCanvas();
+    }
+
     private void Start()
     {
         LocationBtnGet();
@@ -24,6 +30,8 @@ public class Map : BasicComponent
                 case "Brother": { BrotherBtn(Mather.GetChild(i).GetComponent<Button>()); } break;
             }
         }
+        
+        
     }
 
     // 방밖으로 나가기 버튼
