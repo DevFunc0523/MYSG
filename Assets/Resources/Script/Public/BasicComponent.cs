@@ -14,15 +14,18 @@ namespace My.Component
 
         protected virtual void Awake()
         {
+            AwakeRoot();
             InitGameManager();
+            AwakeBasicCanvas(); 
         }
+
+        private void AwakeRoot() { if(mRoot == null) { mRoot = BasicRoot.Get(); } }
 
         protected void AwakeBasicCanvas()
         {
             GameObject obj = GameObject.Find("BasicCanvas");
             if (obj == null)
             {
-                mRoot = BasicRoot.Get();
                 GameObject creativeObj = Resources.Load(mRoot.get[Root.CANVAS]) as GameObject;
                 obj = Instantiate(creativeObj, Vector3.zero, Quaternion.identity);
                 obj.name = "BasicCanvas";
@@ -35,7 +38,6 @@ namespace My.Component
             GameObject obj = GameObject.Find("GameManager");
             if (obj == null)
             {
-                mRoot = BasicRoot.Get();
                 GameObject creativeObj = Resources.Load(mRoot.get[Root.GAMEMANAGER]) as GameObject;
                 obj = Instantiate(creativeObj, Vector3.zero, Quaternion.identity);
                 obj.name = "GameManager";

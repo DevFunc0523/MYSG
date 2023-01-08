@@ -20,7 +20,7 @@ namespace My.SaveData
 {
     public enum LocationEnum
     {
-        居室,
+        居室, 外部
     }
 
     public class Data
@@ -42,6 +42,8 @@ namespace My.SaveData
         }
 
         public Data Get() { return mData; }
+
+        public void SetLocation(LocationEnum set) { mData.Location = set; }
 
         // Converter ( jsonData -> Data )
         private Data ChangeData(JsonData json)

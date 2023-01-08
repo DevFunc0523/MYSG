@@ -13,7 +13,7 @@ public class BasicCanvas : MonoBehaviour
     public GameManager Manager;
 
     private BasicRoot mRoot;
-    private Transform mCurtain, mSelects;
+    public Transform mCurtain, mSelects;
     private GameObject mSelectObj;
 
     public Dictionary<string,Text> mStatistics = new Dictionary<string, Text>();
@@ -21,12 +21,12 @@ public class BasicCanvas : MonoBehaviour
     private void Awake()
     {
         Singleton();
+        GetObject();
         mRoot = BasicRoot.Get();
     }
 
-    private void Start()
+    protected void Start()
     {
-        GetObject();
         SetStatistics();
     }
 
@@ -75,7 +75,7 @@ public class BasicCanvas : MonoBehaviour
         mSelects.GetChild(0).transform.localPosition = new Vector3(0, (i * 50) / 3, 0);
     }
 
-    private void SetStatistics(string mode = null)
+    public void SetStatistics(string mode = null) // 
     {
         Transform root = GameObject.Find("Statistics").transform.Find("Text");
  
@@ -86,7 +86,10 @@ public class BasicCanvas : MonoBehaviour
             for (int i =0; i < root.childCount; i++)
             {
                 obj = root.GetChild(i).name;
-                mStatistics.Add(obj, root.Find(obj).GetComponent<Text>());
+                if (!mStatistics.ContainsKey(obj))
+                {
+                    mStatistics.Add(obj, root.Find(obj).GetComponent<Text>());
+                }
                 mStatistics[obj].text = ToText(obj);
             }
             return;
