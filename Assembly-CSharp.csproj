@@ -60,6 +60,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\EasyJson\Json\JSON.cs" />
+    <Compile Include="Assets\EasyJson\Json\JSONSerialised.cs" />
+    <Compile Include="Assets\EasyJson\Json\JSONStructAttribute.cs" />
+    <Compile Include="Assets\EasyJson\Sample\DecodeJson.cs" />
+    <Compile Include="Assets\EasyJson\Sample\EncodeJson.cs" />
+    <Compile Include="Assets\Resources\Script\Character\SotoAyaSystem.cs" />
     <Compile Include="Assets\Resources\Script\Indoor\IndoorMap.cs" />
     <Compile Include="Assets\Resources\Script\Indoor\IndoorSofa.cs" />
     <Compile Include="Assets\Resources\Script\Outdoor\Outdoor_Map.cs" />
@@ -67,8 +73,8 @@
     <Compile Include="Assets\Resources\Script\Public\BasicComponent.cs" />
     <Compile Include="Assets\Resources\Script\Public\BasicJson.cs" />
     <Compile Include="Assets\Resources\Script\Public\BasicRoot.cs" />
+    <Compile Include="Assets\Resources\Script\Public\CharacterReading.cs" />
     <Compile Include="Assets\Resources\Script\Public\GameManager.cs" />
-    <Compile Include="Assets\Resources\Script\Public\NewBehaviourScript.cs" />
     <Compile Include="Assets\Resources\Script\Public\UserData.cs" />
     <None Include="Assets\Resources\readme.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">

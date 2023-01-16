@@ -9,7 +9,7 @@ public class Outdoor_Map : BasicComponent
 
     public void Start()
     {
-        Manager.Data.SetLocation(LocationEnum.外部);
+        Manager.Data.Location = LocationEnum.外部;
         mMainUi.SetStatistics();
     }
 

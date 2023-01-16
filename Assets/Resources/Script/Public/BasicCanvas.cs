@@ -13,7 +13,7 @@ public class BasicCanvas : MonoBehaviour
     public GameManager Manager;
 
     private BasicRoot mRoot;
-    public Transform mCurtain, mSelects;
+    public Transform mCurtain, mSelects, mText;
     private GameObject mSelectObj;
 
     public Dictionary<string,Text> mStatistics = new Dictionary<string, Text>();
@@ -35,11 +35,14 @@ public class BasicCanvas : MonoBehaviour
 
     private void GetObject()
     {
-        mSelects = GameObject.Find("Selects").transform;
+        mSelects = transform.Find("Selects").transform;
         mSelects.gameObject.SetActive(false);
 
-        mCurtain = GameObject.Find("Curtain").transform;
+        mCurtain = transform.Find("Curtain").transform;
         mCurtain.gameObject.SetActive(false);
+
+        mText = transform.Find("Text").transform;
+        mText.gameObject.SetActive(false);
 
         Manager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
@@ -54,6 +57,7 @@ public class BasicCanvas : MonoBehaviour
 
     public void PopUp_SelectOut()
     {
+        GetObject();
         mSelects.gameObject.SetActive(false);
     }
 
@@ -73,6 +77,13 @@ public class BasicCanvas : MonoBehaviour
             i++;
         }
         mSelects.GetChild(0).transform.localPosition = new Vector3(0, (i * 50) / 3, 0);
+    }
+
+    public void PopUp_Text(string text,string name)
+    {
+        mText.gameObject.SetActive(true);
+        mText.Find("Name").GetComponent<Text>().text = name;
+        mText.Find("Text").GetComponent<Text>().text = text;
     }
 
     public void SetStatistics(string mode = null) // 
@@ -104,19 +115,17 @@ public class BasicCanvas : MonoBehaviour
             string result = "";
             switch(obj)
             {
-                case "Location": result = Manager.Data.Get().Location.ToString(); break;
-                case "Money": result = Manager.Data.Get().Money.ToString() + "円"; break;
-                case "Hour": result = (Manager.Data.Get().Time["Hour"] < 10 ? "0" : "") + Manager.Data.Get().Time["Hour"] + ":00"; break;
+                case "Location": result = Manager.Data.Location.ToString(); break;
+                case "Money": result = Manager.Data.Money.ToString() + "円"; break;
+                case "Hour": result = (Manager.Data.Time["Hour"] < 10 ? "0" : "") + Manager.Data.Time["Hour"] + ":00"; break;
                 case "Health": result = "體力 40/60"; break; // dont
                 case "Stamina": result = "射精 3/3"; break; // dont
                 case "Day":
                     List<string> week = new List<string>() { "月", "火", "水", "木", "金", "土", "日" };
-                    result = Manager.Data.Get().Time["Day"] + "日 ( " + week[Manager.Data.Get().Time["Week"]] + " )";
+                    result = Manager.Data.Time["Day"] + "日 ( " + week[Manager.Data.Time["Week"]] + " )";
                     break;
             }
             return result;
-
-            //여기다가 글자로 바꿔주는거 만들기 
         }
     }
 }

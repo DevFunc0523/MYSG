@@ -1,26 +1,14 @@
-﻿using System;
+﻿using System.Collections;
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 
-using My.Look.UserData;
-
-namespace My.Look.UserData
-{
-    public class JsonData
-    {
-        public List<string> TimeKey = new List<string>() { "Day", "Week", "Hour" };
-        public List<int> TimeVulume = new List<int>() { 0, 0, 0 };
-        public int Location = 0;
-        public int Money = 0;
-    }
-}
 
 namespace My.SaveData
 {
     public enum LocationEnum
     {
-        居室, 外部
+        傢, 外部, 居室,
     }
 
     public class Data
@@ -28,36 +16,49 @@ namespace My.SaveData
         public Dictionary<string, int> Time = new Dictionary<string, int>();
         public LocationEnum Location = LocationEnum.居室;
         public int Money = 0;
+        public string Name;
     }
 
     public class UserData
     {
-        private Data mData;
+        public Data mData;
 
-        public UserData()
+        public UserData(int save)
         {
-            string path = File.ReadAllText(Application.dataPath + "/Resources/Json/init/UserData.json");
-            JsonData data = JsonUtility.FromJson<JsonData>(path);
-            mData = ChangeData(data);
+            string saveFile = null;
+            Hashtable data = null;
+            if (save == -1) // not save -> initfile
+            {
+                saveFile = "null"; 
+                /*
+                path = File.ReadAllText(Application.dataPath + "/Resources/Json/Init/UserData.json");
+                File.WriteAllText(Application.dataPath + "/Resources/Json/" + saveFile + "/UserData.json", JsonUtility.ToJson(data));
+                */
+            }
+            else { saveFile = save.ToString(); } // savefile
+
+            // data open
+            data = (Hashtable)easy.JSON.JsonDecode(File.ReadAllText(Application.dataPath + "/Resources/Json/" + saveFile + "/UserData.json"));
+            mData = OpenJson(data);
         }
 
         public Data Get() { return mData; }
 
         public void SetLocation(LocationEnum set) { mData.Location = set; }
 
-        // Converter ( jsonData -> Data )
-        private Data ChangeData(JsonData json)
+        // Converter ( Hashtable -> Data )
+        private Data OpenJson(Hashtable data)
         {
-            Data Result = new Data();
+            Data result = new Data();
+            Hashtable copy = (Hashtable)data["Time"];
 
-            // time dictionary make
-            for (int i =0; i < json.TimeKey.Count; i++) { Result.Time.Add( json.TimeKey[i], json.TimeVulume[i]); }
-            // location enum make
-            Result.Location = (LocationEnum)json.Location;
-            // money make
-            Result.Money = json.Money;
+            foreach (object key in copy.Keys) { result.Time.Add(key.ToString(), (int)copy[key]); }
 
-            return Result;
+            result.Location = (LocationEnum)((int)data["Location"]);
+            result.Money = (int)data["Money"];
+            result.Name = data["Name"].ToString();
+
+            return result;
         }
 
     }

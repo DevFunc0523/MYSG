@@ -10,10 +10,10 @@ using My.Component;
 
 public class IndoorMap : BasicComponent
 {
-
     private void Start()
     {
         LocationBtnGet();
+        MapStart();
     }
 
     private void LocationBtnGet()
@@ -22,7 +22,6 @@ public class IndoorMap : BasicComponent
         for (int i = 0; i < temp.childCount; i++) {
             switch (temp.GetChild(i).name) {
                 case "Outdoor": { OutdoorBtn(SetButton(i)); } break;
-                case "Badge": { BadgeBtn(SetButton(i)); } break;
             }
         }
 

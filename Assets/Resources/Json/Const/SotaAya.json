@@ -1,0 +1,21 @@
+﻿{
+  "1_12_Object": {
+    "name": "SotoAya",
+    "IndoorMap": "Living",
+    "btnText": "In%ショファへ行く/Return%かえる",
+    "btnEvent": "リビングにSatoAyaがいるようだ。"
+  },
+  "1_12_Event": {
+    "0": [
+      [ "text", "text_0" ],
+      [ "text", "text_1" ],
+      [ "text", "text_2" ]
+    ],
+    "1": [
+      [ "text", "text_0" ],
+      [ "text", "text_1" ],
+      [ "text", "text_2" ]
+    ]
+  }
+}
+

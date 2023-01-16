@@ -6,12 +6,6 @@ using My.Component;
 public class IndoorSofa : BasicComponent
 {
 
-    protected override void Awake()
-    {
-        base.Awake();
-        AwakeBasicCanvas();
-    }
-
     
 
 

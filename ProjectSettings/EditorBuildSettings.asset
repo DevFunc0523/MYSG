@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Indoor/Indoor_Map.unity
     guid: eeed0d9d839904445bc42438b5d42f16
   - enabled: 1
-    path: Assets/Scenes/Indoor/Indoor_Sofa.unity
+    path: Assets/Scenes/Indoor/Indoor_Living.unity
     guid: a90582fb53ecdf646bc6ef04d1482787
   - enabled: 1
     path: Assets/Scenes/Outdoor/Outdoor_Map.unity
