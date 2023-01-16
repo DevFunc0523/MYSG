@@ -7,14 +7,10 @@
   },
   "1_12_Event": {
     "0": [
-      [ "text", "text_0" ],
-      [ "text", "text_1" ],
-      [ "text", "text_2" ]
-    ],
-    "1": [
-      [ "text", "text_0" ],
-      [ "text", "text_1" ],
-      [ "text", "text_2" ]
+      "text%text_0_0",
+      "text%text_0_1",
+      "text%text_0_2",
+      "text%text_0_3"
     ]
   }
 }

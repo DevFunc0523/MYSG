@@ -49,7 +49,6 @@ public class IndoorMap : BasicComponent
         set.onClick.AddListener(()=>mMainUi.PopUp_Select(temp));
     }
 
-    // tast
     private void BadgeBtn(Button set)
     {
         Dictionary<string, Action> temp = new Dictionary<string, Action>();

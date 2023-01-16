@@ -15,6 +15,8 @@ namespace My.Character
         public string root = null;
         
         public Dictionary<int, List<KeyValuePair<string,string>>> mEvent = new Dictionary<int, List<KeyValuePair<string, string>>>();
+
+        public Dictionary<int,List<string>> mEvent_ = new Dictionary<int, List<string>>();
         public Dictionary<string, Dictionary<string, string>> mObject = new Dictionary<string, Dictionary<string, string>>();
         public List<string> nameList = new List<string>() { "SotaAya",  };
 
@@ -28,7 +30,7 @@ namespace My.Character
         {
             Hashtable data, copy = new Hashtable();
             ArrayList temp, tempo = new ArrayList();
-            List<KeyValuePair<string, string>> vulme = new List<KeyValuePair<string, string>>();
+            List<string> vulme = new List<string>();
 
             data = (Hashtable)easy.JSON.JsonDecode(File.ReadAllText(Application.dataPath + "/Resources/Json/" + "Const" + "/" + name + ".json"));
 
@@ -43,9 +45,9 @@ namespace My.Character
                 mObject.Add(name, obj);
             }
 
-            if (data.ContainsKey(root+ "_Event"))
+            if (data.ContainsKey(root + "_Event"))
             {
-                copy = (Hashtable)data[root+"_Event"];
+                copy = (Hashtable)data[root + "_Event"];
                 foreach (string key in copy.Keys)
                 {
                     vulme.Clear();
@@ -53,10 +55,9 @@ namespace My.Character
 
                     for (int i = 0; i < temp.Count; i++)
                     {
-                        tempo = (ArrayList)temp[i];
-                        vulme.Add(new KeyValuePair<string, string>(tempo[0].ToString(), tempo[1].ToString()));
+                        vulme.Add(temp[i].ToString());
                     }
-                    mEvent.Add(int.Parse(key), vulme);
+                    mEvent_.Add(int.Parse(key), vulme);
                 }
             }
         }
